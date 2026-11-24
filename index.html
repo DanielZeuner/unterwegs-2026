@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Daniel in Thailand 🇹🇭</title>
+<meta property="og:title" content="Daniel in Thailand 🇹🇭">
+<meta property="og:description" content="Was ich bis zum 5. Dezember so treibe – mit Bildern und live, was ich gerade mache.">
+<meta property="og:image" content="https://danielzeuner.github.io/unterwegs-2026/img/yipeng.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1b3d">
+<style>
+  :root{
+    --nacht:#0f1b3d; --nacht2:#1b2a5c; --laterne:#ff9f43; --gold:#ffd27a;
+    --creme:#fff8ee; --text:#2b2b2b; --grau:#7a7a85; --herz:#e5484d; --gruen:#2fa36b;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--creme);color:var(--text);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px}
+
+  /* Kopf mit Laternen */
+  header{position:relative;overflow:hidden;color:#fff;padding:44px 0 34px;
+    background:linear-gradient(180deg,rgba(15,27,61,.55),rgba(15,27,61,.92)),url(img/yipeng.jpg) center/cover}
+  header h1{margin:0;font-size:32px;line-height:1.15;letter-spacing:-.5px}
+  header p{margin:10px 0 0;font-size:17px;opacity:.92;line-height:1.45}
+  .laterne{position:absolute;bottom:-40px;width:14px;height:18px;border-radius:6px 6px 4px 4px;
+    background:radial-gradient(circle at 50% 70%,#fff3c4,var(--laterne) 60%,#c4540f);
+    box-shadow:0 0 14px 4px rgba(255,159,67,.55);animation:steigen linear infinite;opacity:0}
+  @keyframes steigen{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.95}
+    50%{transform:translateY(-180px) translateX(14px)}90%{opacity:.8}
+    100%{transform:translateY(-360px) translateX(-10px);opacity:0}}
+
+  /* Live-Kasten */
+  .live{background:#fff;border-radius:20px;margin:-22px 0 0;position:relative;z-index:2;
+    box-shadow:0 8px 30px rgba(15,27,61,.13);padding:18px}
+  .uhren{display:flex;gap:10px}
+  .uhr{flex:1;background:var(--creme);border-radius:14px;padding:10px 12px;text-align:center}
+  .uhr small{display:block;color:var(--grau);font-size:13px}
+  .uhr b{font-size:28px;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+  .gerade{margin-top:14px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,#fff3e0,#ffe9cc);font-size:16px;line-height:1.4}
+  .gerade .punkt{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gruen);margin-right:6px;animation:puls 1.6s infinite}
+  @keyframes puls{0%,100%{opacity:1}50%{opacity:.25}}
+  .gerade small{display:block;color:#8a6a3a;margin-top:4px;font-size:14px}
+  .countdown{margin-top:14px;text-align:center}
+  .countdown small{color:var(--grau);font-size:14px}
+  .cd{display:flex;justify-content:center;gap:8px;margin-top:6px}
+  .cd div{background:var(--nacht);color:#fff;border-radius:12px;min-width:62px;padding:8px 6px}
+  .cd b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
+  .cd span{font-size:11px;opacity:.75;text-transform:uppercase;letter-spacing:.5px}
+  .balken{height:8px;background:#eee;border-radius:9px;margin-top:14px;overflow:hidden}
+  .balken i{display:block;height:100%;background:linear-gradient(90deg,var(--laterne),var(--herz));border-radius:9px;width:0;transition:width 1.2s}
+  .balken-text{font-size:13px;color:var(--grau);margin-top:6px;text-align:center}
+
+  h2{font-size:21px;margin:30px 0 12px}
+
+  /* Route */
+  .route{display:flex;align-items:flex-start;justify-content:space-between;position:relative;margin:6px 0 4px}
+  .route:before{content:"";position:absolute;left:22px;right:22px;top:21px;border-top:2px dashed #d9c9b0}
+  .stop{position:relative;text-align:center;width:20%;font-size:12px;color:var(--grau)}
+  .stop .k{width:44px;height:44px;margin:0 auto 6px;border-radius:50%;background:#fff;border:2px solid #e3d6c2;display:grid;place-items:center;font-size:20px}
+  .stop.erledigt .k{background:#f1ece4}
+  .stop.jetzt .k{border-color:var(--laterne);background:#fff3e0;box-shadow:0 0 0 5px rgba(255,159,67,.22)}
+  .stop.jetzt{color:var(--text);font-weight:600}
+
+  /* Tage */
+  .tag{background:#fff;border-radius:18px;margin-bottom:12px;box-shadow:0 2px 12px rgba(15,27,61,.07);overflow:hidden}
+  .tag.vorbei{opacity:.62}
+  .tag.heute{box-shadow:0 0 0 3px var(--laterne),0 6px 22px rgba(255,159,67,.25)}
+  .kopf{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+  .kopf .emo{font-size:28px;width:40px;text-align:center}
+  .kopf .txt{flex:1;min-width:0}
+  .kopf .datum{font-size:13px;color:var(--grau)}
+  .kopf .titel{font-size:17px;font-weight:650;line-height:1.25}
+  .badge{font-size:11px;font-weight:700;background:var(--laterne);color:#fff;border-radius:8px;padding:2px 7px;margin-left:6px;vertical-align:2px}
+  .pfeil{transition:transform .25s;color:var(--grau);font-size:18px}
+  .tag.offen .pfeil{transform:rotate(180deg)}
+  .inhalt{display:none;padding:0 16px 16px}
+  .tag.offen .inhalt{display:block;animation:auf .25s ease}
+  @keyframes auf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .bild{position:relative;margin:0 -16px 12px}
+  .bild img{display:block;width:100%;height:190px;object-fit:cover;cursor:zoom-in}
+  .bild figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 14px 8px;color:#fff;font-size:13px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+  .punkt-liste{list-style:none;margin:0;padding:0}
+  .punkt-liste li{display:flex;gap:12px;padding:10px 0;border-top:1px solid #f1ece4}
+  .punkt-liste li:first-child{border-top:0}
+  .punkt-liste li.jetzt{background:#fff6e8;margin:0 -16px;padding:10px 16px;border-radius:0}
+  .zeit{width:58px;flex:none;text-align:right}
+  .zeit b{display:block;font-size:15px;font-variant-numeric:tabular-nums}
+  .zeit small{display:block;font-size:11.5px;color:var(--grau);font-variant-numeric:tabular-nums}
+  .was{flex:1;font-size:15.5px;line-height:1.38}
+  .was .n{display:block;color:var(--grau);font-size:13.5px;margin-top:2px}
+  .was a{display:inline-block;margin-top:5px;font-size:13px;color:#b3560b;text-decoration:none;background:#fff1e0;border-radius:8px;padding:3px 8px}
+  .familie{margin-top:10px;background:#fdecef;border-radius:12px;padding:10px 12px;font-size:14.5px;line-height:1.4}
+
+  /* Hotels */
+  .hotel{display:flex;gap:12px;align-items:center;background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 2px 10px rgba(15,27,61,.06)}
+  .hotel .ic{width:56px;height:56px;border-radius:12px;flex:none;background:var(--creme);display:grid;place-items:center;font-size:26px;overflow:hidden}
+  .hotel .ic img{width:100%;height:100%;object-fit:cover}
+  .hotel b{display:block;font-size:15.5px}
+  .hotel small{color:var(--grau);font-size:13px;line-height:1.35;display:block}
+  .hotel.jetzt{box-shadow:0 0 0 2px var(--laterne)}
+  .hotel.vorbei{opacity:.6}
+  .hotel a{color:#b3560b;font-size:13px}
+
+  /* Herz */
+  .herz{display:block;width:100%;margin:28px 0 8px;padding:16px;border:0;border-radius:16px;font-size:18px;font-weight:700;color:#fff;
+    background:linear-gradient(135deg,#ff6b6b,var(--herz));box-shadow:0 8px 24px rgba(229,72,77,.35);cursor:pointer;text-decoration:none;text-align:center}
+  .herz:active{transform:scale(.98)}
+  .flieg{position:fixed;font-size:30px;pointer-events:none;animation:flieg 1.6s ease-out forwards;z-index:50}
+  @keyframes flieg{to{transform:translateY(-260px) scale(1.6);opacity:0}}
+
+  footer{color:var(--grau);font-size:11.5px;line-height:1.5;padding:18px 0 40px}
+  footer a{color:var(--grau)}
+
+  .knopf-heute{position:fixed;right:16px;bottom:18px;z-index:20;background:var(--nacht);color:#fff;border:0;border-radius:24px;padding:11px 16px;font-size:14px;font-weight:600;box-shadow:0 6px 18px rgba(15,27,61,.3);cursor:pointer;display:none}
+
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+  .lightbox.an{display:flex}
+  .lightbox img{max-width:100%;max-height:85vh;border-radius:10px}
+  .lightbox p{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#fff;font-size:14px;padding:0 20px}
+</style>
+</head>
+<body>
+
+<header>
+  <div id="laternen"></div>
+  <div class="wrap">
+    <h1>Daniel in Thailand 🇹🇭</h1>
+    <p>Hey Schatz 👋 Hier siehst du, was ich bis zum 5.12. so treibe. Tipp einfach auf einen Tag, dann klappt er auf.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="live" aria-live="polite">
+    <div class="uhren">
+      <div class="uhr"><small>🇹🇭 bei mir</small><b id="uhr-th">--:--</b></div>
+      <div class="uhr"><small>🇩🇪 bei dir</small><b id="uhr-de">--:--</b></div>
+    </div>
+    <div class="gerade" id="gerade">…</div>
+    <div class="countdown">
+      <small>So lange noch, bis ich in Frankfurt lande ❤️</small>
+      <div class="cd">
+        <div><b id="cd-t">0</b><span>Tage</span></div>
+        <div><b id="cd-s">0</b><span>Std</span></div>
+        <div><b id="cd-m">0</b><span>Min</span></div>
+        <div><b id="cd-x">0</b><span>Sek</span></div>
+      </div>
+    </div>
+    <div class="balken"><i id="balken"></i></div>
+    <div class="balken-text" id="balken-text"></div>
+  </section>
+
+  <h2>🗺️ Meine Route</h2>
+  <div class="route" id="route"></div>
+
+  <h2>📅 Meine Tage</h2>
+  <div class="tag vorbei" id="bisher">
+    <div class="kopf"><div class="emo">✈️</div><div class="txt"><div class="datum">20.–23.11.</div><div class="titel">Was bisher war</div></div><div class="pfeil">⌄</div></div>
+    <div class="inhalt">
+      <ul class="punkt-liste">
+        <li><div class="zeit"><b>Fr</b><small>20.11.</small></div><div class="was">Abflug in Frankfurt, Hinflug sogar in der Business Class 🛫</div></li>
+        <li><div class="zeit"><b>Sa</b><small>21.11.</small></div><div class="was">Gelandet in Bangkok, eine Nacht am Flughafen</div></li>
+        <li><div class="zeit"><b>So</b><small>22.11.</small></div><div class="was">Weiter nach Chiang Mai in den Norden</div></li>
+        <li><div class="zeit"><b>Mo</b><small>23.11.</small></div><div class="was">Erstes Training und erster Gym-Besuch</div></li>
+      </ul>
+    </div>
+  </div>
+  <div id="tage"></div>
+
+  <h2>🏨 Wo ich schlafe</h2>
+  <div id="hotels"></div>
+
+  <a class="herz" id="herz" href="https://wa.me/?text=%E2%9D%A4%EF%B8%8F%20Ich%20denk%20an%20dich!%20Pass%20auf%20dich%20auf%20%F0%9F%98%98" target="_blank" rel="noopener">❤️ Schick mir ein Herz</a>
+  <div style="text-align:center;color:var(--grau);font-size:13px">öffnet WhatsApp, dann mich auswählen 😉</div>
+
+  <footer>
+    Alle Uhrzeiten laut Plan, vor Ort kann sich mal was verschieben. Thailand ist uns 6 Stunden voraus.<br><br>
+    Fotos von Wikimedia Commons:
+    <a href="https://commons.wikimedia.org/wiki/File:LK_03_loy_krathong_yi_peng_san_sai.jpg">Takeaway</a> (CC BY-SA 3.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:Thai_people_setting_their_candle-lit_krathongs_in_the_Ping_river_at_night_during_Loy_Krathong_2015-10_(22715933524).jpg">John Shedrick</a> (CC BY 2.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:%E0%B9%80%E0%B8%88%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%AB%E0%B8%A5%E0%B8%A7%E0%B8%87.jpg">Kingkidton</a> (CC BY-SA 4.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:Muay_Thai_Fight_Us_Vs_Burma_(80668065).jpeg">Gerrit Phil Baumann</a> (CC BY 3.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:Wat_Phra_That_Doi_Suthep_-_Chiang_Mai.jpg">JJ Harrison</a> (CC BY-SA 3.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:CHIANG_MAI_NIGHT_BAZAAR_THAILAND_FEB_2012_(6869571256).jpg">calflier001</a> (CC BY-SA 2.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:4Y1A1159_Bangkok_(33536795515).jpg">Ninara</a> (CC BY 2.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:RajInfront.jpg">Mynameisfootlong</a> (CC BY 4.0) ·
+    <a href="https://commons.wikimedia.org/wiki/File:Bangkok_Lumpinee_Boxing_Stadium_1.jpg">Sayompoo Setabhrahmana</a> (CC BY-SA 4.0).
+    Hotelfoto: Booking.com.
+  </footer>
+</main>
+
+<button class="knopf-heute" id="knopf-heute">⬆️ Zu heute</button>
+<div class="lightbox" id="lightbox"><img alt=""><p></p></div>
+
+<script>
+// Alle Zeiten in Thai-Zeit (UTC+7). Deutschland im Winter: UTC+1, also 6 Stunden zurück.
+const TH = 7, DE = 1;
+const bilder = q => 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(q);
+
+const TAGE = [
+  { d:'2026-11-24', wt:'Di', emo:'🏮', titel:'Lichterfest am Fluss', ort:'Chiang Mai',
+    bild:['img/krathong.jpg','Loy Krathong: Tausende Lichterboote auf dem Ping-Fluss'],
+    p:[
+      ['06:00','09:00','🥊','Muay-Thai-Training im Santai-Camp','Gruppe und danach Privatstunde, mitten zwischen Reisfeldern','Santai Muay Thai Chiang Mai'],
+      ['09:20','11:50','💻','Arbeiten im Khao Café','direkt am Reisfeld','Khao Cafe San Kamphaeng'],
+      ['12:15','13:15','💆','Massage im Dhara Dhevi','gegen den Muskelkater','Dhara Dhevi Chiang Mai spa'],
+      ['14:00','17:00','📞','Arbeit und Calls',''],
+      ['18:00','23:00','🏮','Loy Krathong am Ping-Fluss','Lichterboote auf dem Wasser, Vollmond gegen 22 Uhr','Loy Krathong Chiang Mai Ping river']
+    ]},
+  { d:'2026-11-25', wt:'Mi', emo:'🏡', titel:'Umzug ins gemütliche Hotel', ort:'Chiang Mai',
+    bild:['img/chedi.jpg','Wat Chedi Luang: über 600 Jahre alte Tempelruine'],
+    p:[
+      ['06:00','09:00','🥊','Training im Santai-Camp',''],
+      ['09:30','10:20','🧳','Tschüss Kammer mit Badewanne 😅','Umzug ins Puripunn Hideaway'],
+      ['10:30','11:45','☕','Brunch und Arbeiten im Fern Forest Café','Dschungelgarten mit Wasserfall und Koi-Teich','Fern Forest Cafe Chiang Mai'],
+      ['12:00','13:30','💆','Tok-Sen-Massage','die alte Lanna-Massage mit Holzhammer und Holzkeil 😄','Tok Sen massage Chiang Mai'],
+      ['13:40','14:20','🛕','Wat Chedi Luang','riesige Tempelruine mitten in der Altstadt','Wat Chedi Luang'],
+      ['14:20','14:45','🏡','Einchecken im neuen Hotel',''],
+      ['14:45','17:00','💻','Arbeit und Dojo-Trust-Call',''],
+      ['18:00','23:00','🏮','Lichterfest, Abend 2','vom neuen Hotel nur 500 m zu Fuß zum Fluss','Yi Peng Chiang Mai lanterns']
+    ]},
+  { d:'2026-11-26', wt:'Do', emo:'🎬', titel:'Drehtag', ort:'Chiang Mai',
+    p:[
+      ['06:00','09:00','🥊','Training, Sonnenaufgang übers Camp filmen',''],
+      ['10:00','13:00','🎬','Drehtag: Videos für Dojo Trust',''],
+      ['13:15','15:45','💻','Mittag und Arbeiten im Nakara Jardin','französisches Café direkt am Fluss','Nakara Jardin Chiang Mai'],
+      ['16:00','17:00','💆','Massage im Rarinjinda Spa','Öl mit heißem Kräuterstempel','RarinJinda Wellness Spa Chiang Mai']
+    ]},
+  { d:'2026-11-27', wt:'Fr', emo:'🥊', titel:'Kampfabend im Stadion', ort:'Chiang Mai',
+    bild:['img/muaythai.jpg','So sieht ein Muay-Thai-Abend im Stadion aus'],
+    p:[
+      ['06:00','09:00','🥊','Training im Santai-Camp',''],
+      ['09:30','12:00','💻','Arbeiten im Chapulin','Resort mitten im Reisfeld','Chapulin Natural Resort Chiang Mai'],
+      ['14:00','17:30','💻','Arbeit',''],
+      ['18:00','19:30','💆','Thai-Massage in der Altstadt',''],
+      ['21:00','23:00','🥊','Chiangmai Boxing Stadium','echte Kämpfe live, als Zuschauer','Chiangmai Boxing Stadium']
+    ]},
+  { d:'2026-11-28', wt:'Sa', emo:'🪂', titel:'Action-Tag', ort:'Chiang Mai und Mae Rim',
+    familie:'💛 Bei euch um 12 Uhr: Kita-Weihnachtsmarkt. Ich bin in Gedanken bei euch und will Fotos!',
+    p:[
+      ['06:00','10:00','🥊','Training und Gespräch mit dem Gym','gehört zu meiner Arbeit für Dojo Trust'],
+      ['11:00','12:00','🎯','Schießstand','mal was ganz anderes','333 Shooting Range Chiang Mai'],
+      ['12:15','13:15','🪂','Bungee-Sprung aus 50 Metern 😬','im Dschungel bei Mae Rim','X-Centre Chiang Mai bungy'],
+      ['13:30','15:00','💻','Mittag und Arbeiten im Sala Cafe',''],
+      ['15:45','17:45','💆','Oasis Spa','zwei Stunden Lanna-Massage','Oasis Spa Lanna Chiang Mai'],
+      ['18:00','21:00','🛍️','Samstags-Nachtmarkt Wua Lai','Silberstraße und Streetfood','Wualai Walking Street Chiang Mai']
+    ]},
+  { d:'2026-11-29', wt:'So', emo:'🌅', titel:'Sonnenaufgang am Berg', ort:'Chiang Mai',
+    bild:['img/suthep.jpg','Doi Suthep: goldener Tempel über der Stadt'],
+    p:[
+      ['05:40','07:30','🌅','Doi Suthep zum Sonnenaufgang','heiliger Berg, Blick über ganz Chiang Mai','Doi Suthep sunrise'],
+      ['08:00','09:45','☕','Frühstück und Arbeiten am See','Fernpresso at Lake','Fernpresso at Lake Chiang Mai'],
+      ['11:00','16:00','🧖','Langer Spa-Tag im Dhara Dhevi','Thermalbad, Lanna-Massage, Milchbad','Dhara Dhevi spa']
+    ]},
+  { d:'2026-11-30', wt:'Mo', emo:'✈️', titel:'Tschüss Chiang Mai', ort:'Chiang Mai → Bangkok',
+    bild:['img/nightbazaar.jpg','Der Nachtmarkt in Chiang Mai'],
+    p:[
+      ['06:00','09:00','🥊','Letztes Training im Santai-Camp',''],
+      ['11:30','12:00','🧳','Auschecken',''],
+      ['12:00','13:30','💆','Massage am Nachtmarkt','Beine fit machen für den Flug'],
+      ['13:45','17:00','💻','Arbeiten am Fluss','um 16 Uhr Stabsmeeting La Familia'],
+      ['19:35','21:00','✈️','Flug nach Bangkok',''],
+      ['21:00','22:30','🏨','Ins Hotel Salil in Thonglor','','The Salil Hotel Sukhumvit 57 Thonglor']
+    ]},
+  { d:'2026-12-01', wt:'Di', emo:'🥊', titel:'Bangkok: Yokkao-Gym', ort:'Bangkok',
+    bild:['img/bangkok.jpg','Bangkok'],
+    p:[
+      ['08:00','11:00','🥊','Training und Gespräch im Yokkao Training Center','gehört zu meiner Arbeit für Dojo Trust','Yokkao Training Center Bangkok'],
+      ['11:00','17:00','💻','Arbeit',''],
+      ['18:00','19:00','📞','Online-Termin','']
+    ]},
+  { d:'2026-12-02', wt:'Mi', emo:'🎬', titel:'Drehtag 2', ort:'Bangkok',
+    p:[
+      ['08:00','10:00','🥊','Training im Yokkao',''],
+      ['11:00','14:00','🎬','Drehtag: Videos für Dojo Trust',''],
+      ['16:00','17:00','📞','Dojo-Trust-Call',''],
+      ['19:00','20:30','💆','Perception Blind Massage','die Masseure sind blind und sollen die besten Hände der Stadt haben','Perception Blind Massage Bangkok']
+    ]},
+  { d:'2026-12-03', wt:'Do', emo:'🏟️', titel:'Petchyindee und Stadion-Abend', ort:'Bangkok',
+    bild:['img/raja.jpg','Rajadamnern: das älteste Muay-Thai-Stadion Thailands'],
+    familie:'💛 Bei euch um 17 Uhr: Weihnachtskonzert und Adventsbasar in der Schule. Drück alle ganz fest von mir!',
+    p:[
+      ['11:00','13:30','🥊','Training in der Petchyindee Academy','Privatstunde um 12 Uhr','Petchyindee Academy Bangkok'],
+      ['14:00','15:00','🤝','Gespräch mit der Leitung','gehört zu meiner Arbeit für Dojo Trust'],
+      ['18:00','22:00','🏟️','Rajadamnern-Stadion','Kampfabend im ältesten Stadion des Landes','Rajadamnern Stadium']
+    ]},
+  { d:'2026-12-04', wt:'Fr', emo:'🔥', titel:'Das große Finale', ort:'Bangkok',
+    bild:['img/lumpinee.jpg','Lumpinee-Stadion in Bangkok'],
+    p:[
+      ['08:00','10:00','🥊','Vielleicht noch ein letztes Training',''],
+      ['11:30','12:00','🧳','Auschecken, Gepäck bleibt im Hotel',''],
+      ['17:00','23:00','🔥','ONE Friday Fights im Lumpinee-Stadion','die großen Kämpfe live','ONE Friday Fights Lumpinee'],
+      ['23:00','23:59','🚕','Direkt weiter zum Flughafen','']
+    ]},
+  { d:'2026-12-05', wt:'Sa', emo:'🏠', titel:'Ab nach Hause', ort:'Bangkok → Doha → Frankfurt',
+    p:[
+      ['03:00','19:20','✈️','Rückflug über Doha',''],
+      ['19:20','23:59','🏠','Landung in Frankfurt','und dann nichts wie heim zu euch ❤️']
+    ]}
+];
+
+const HOTELS = [
+  ['2026-11-21','2026-11-22','✈️','Divalux Resort','1 Nacht am Flughafen Bangkok',null],
+  ['2026-11-22','2026-11-25','🛏️','Amethyst Hotel','Chiang Mai, die Kammer mit Badewanne 😅',null],
+  ['2026-11-25','2026-11-30','🌿','Puripunn Hideaway','Chiang Mai, kleines Boutique-Hotel mit Garten-Pool, 9,5 von 10 Punkten','https://r-xx.bstatic.com/xdata/images/hotel/1200x630/503523679.jpg?k=3551bcb3e309ea270c7f8eb26202b66a075d84ca3ba05ed92f52c520203f4e8d&o='],
+  ['2026-11-30','2026-12-04','🏙️','The Salil Hotel Thonglor','Bangkok, mit Pool und Frühstück',null],
+  ['2026-12-04','2026-12-05','✈️','Im Flieger','die letzte Nacht wird geflogen',null]
+];
+
+const ROUTE = [
+  ['🛫','Frankfurt','2026-11-20','2026-11-21'],
+  ['🌆','Bangkok','2026-11-21','2026-11-22'],
+  ['🏮','Chiang Mai','2026-11-22','2026-11-30'],
+  ['🥊','Bangkok','2026-11-30','2026-12-05'],
+  ['🏠','Zuhause','2026-12-05','2099-01-01']
+];
+
+const LANDUNG = Date.UTC(2026,11,5,12,20);   // Sa 05.12. 13:20 deutsche Zeit
+const START   = Date.UTC(2026,10,20,21,5);   // Fr 20.11. 22:05 Abflug
+
+const pad = n => String(n).padStart(2,'0');
+function inZone(ms, off){ const t = new Date(ms + off*3600e3);
+  return { datum:`${t.getUTCFullYear()}-${pad(t.getUTCMonth()+1)}-${pad(t.getUTCDate())}`,
+           min:t.getUTCHours()*60+t.getUTCMinutes(), hh:pad(t.getUTCHours()), mm:pad(t.getUTCMinutes()) }; }
+const zuMin = s => { const [h,m] = s.split(':').map(Number); return h*60+m; };
+function deZeit(s){ let m = zuMin(s) - (TH-DE)*60; if (m<0) m += 1440; return `${pad(Math.floor(m/60))}:${pad(m%60)}`; }
+const kurz = d => { const [,m,t] = d.split('-'); return `${t}.${m}.`; };
+
+function aufbauen(){
+  const jetztTH = inZone(Date.now(), TH);
+  const box = document.getElementById('tage');
+  box.innerHTML = '';
+  TAGE.forEach(t => {
+    const vorbei = t.d < jetztTH.datum, heute = t.d === jetztTH.datum;
+    const el = document.createElement('div');
+    el.className = 'tag' + (vorbei?' vorbei':'') + (heute?' heute offen':'');
+    el.id = 'tag-' + t.d;
+    const punkte = t.p.map(([s,e,ic,was,n,q]) => {
+      const laeuft = heute && jetztTH.min >= zuMin(s) && jetztTH.min < zuMin(e);
+      return `<li class="${laeuft?'jetzt':''}"><div class="zeit"><b>${s}</b><small>🇩🇪 ${deZeit(s)}</small></div>
+        <div class="was">${ic} ${was}${laeuft?' <span class="badge">JETZT</span>':''}${n?`<span class="n">${n}</span>`:''}${q?`<a href="${bilder(q)}" target="_blank" rel="noopener">📷 Bilder ansehen</a>`:''}</div></li>`;
+    }).join('');
+    el.innerHTML = `<div class="kopf"><div class="emo">${t.emo}</div><div class="txt">
+        <div class="datum">${t.wt} ${kurz(t.d)} · ${t.ort}${heute?'<span class="badge">HEUTE</span>':''}${vorbei?' · ✓ erlebt':''}</div>
+        <div class="titel">${t.titel}</div></div><div class="pfeil">⌄</div></div>
+      <div class="inhalt">
+        ${t.bild?`<figure class="bild"><img loading="lazy" src="${t.bild[0]}" alt="${t.bild[1]}"><figcaption>${t.bild[1]}</figcaption></figure>`:''}
+        <ul class="punkt-liste">${punkte}</ul>
+        ${t.familie?`<div class="familie">${t.familie}</div>`:''}
+      </div>`;
+    box.appendChild(el);
+  });
+
+  document.getElementById('route').innerHTML = ROUTE.map(([ic,ort,von,bis]) => {
+    const k = jetztTH.datum >= bis ? 'erledigt' : (jetztTH.datum >= von ? 'jetzt' : '');
+    return `<div class="stop ${k}"><div class="k">${k==='erledigt'?'✓':ic}</div>${ort}</div>`;
+  }).join('');
+
+  document.getElementById('hotels').innerHTML = HOTELS.map(([von,bis,ic,name,info,bild]) => {
+    const k = jetztTH.datum >= bis ? 'vorbei' : (jetztTH.datum >= von ? 'jetzt' : '');
+    const karte = 'https://www.google.com/maps/search/' + encodeURIComponent(name + (name.includes('Divalux')?' Suvarnabhumi':name.includes('Salil')?' Bangkok':' Chiang Mai'));
+    return `<div class="hotel ${k}"><div class="ic">${bild?`<img src="${bild}" alt="${name}">`:ic}</div>
+      <div><b>${name}${k==='jetzt'?' <span class="badge">JETZT</span>':''}</b><small>${kurz(von)} bis ${kurz(bis)} · ${info}</small>
+      ${name==='Im Flieger'?'':`<a href="${karte}" target="_blank" rel="noopener">📍 Auf der Karte</a>`}</div></div>`;
+  }).join('');
+}
+
+function geradeText(){
+  const now = Date.now(), th = inZone(now, TH);
+  if (now >= LANDUNG) return '🏠 <b>Ich bin wieder da!</b><small>Endlich wieder bei euch ❤️</small>';
+  const tag = TAGE.find(t => t.d === th.datum);
+  if (!tag) return '🌴 <b>Ich bin in Thailand</b>';
+  const p = tag.p.map(([s,e,ic,was]) => ({s:zuMin(s), e:zuMin(e), ic, was, zeit:s}));
+  const akt = p.find(x => th.min >= x.s && th.min < x.e);
+  if (akt) return `<span class="punkt"></span>Gerade bei mir: <b>${akt.ic} ${akt.was}</b><small>laut Plan 😉</small>`;
+  const naechst = p.find(x => x.s > th.min);
+  if (th.min < 330 || (!naechst && th.min >= 1350)) return '😴 <b>Bei mir ist Nacht, ich schlafe wohl gerade.</b><small>Schreib ruhig, ich lese es morgens.</small>';
+  if (naechst) return `🛵 <b>Unterwegs oder beim Essen</b><small>Als Nächstes um ${naechst.zeit} (bei dir ${deZeit(naechst.zeit)}): ${naechst.ic} ${naechst.was}</small>`;
+  return '🌙 <b>Feierabend bei mir</b><small>Der Tag ist durch, gleich geht es ins Bett.</small>';
+}
+
+let letzterTag = '';
+function ticken(){
+  const now = Date.now(), th = inZone(now, TH), de = inZone(now, DE);
+  document.getElementById('uhr-th').textContent = `${th.hh}:${th.mm}`;
+  document.getElementById('uhr-de').textContent = `${de.hh}:${de.mm}`;
+  document.getElementById('gerade').innerHTML = geradeText();
+  let rest = Math.max(0, LANDUNG - now);
+  const t = Math.floor(rest/864e5); rest -= t*864e5;
+  const s = Math.floor(rest/36e5);  rest -= s*36e5;
+  const m = Math.floor(rest/6e4);   rest -= m*6e4;
+  document.getElementById('cd-t').textContent = t;
+  document.getElementById('cd-s').textContent = s;
+  document.getElementById('cd-m').textContent = m;
+  document.getElementById('cd-x').textContent = Math.floor(rest/1e3);
+  const anteil = Math.min(1, Math.max(0, (now-START)/(LANDUNG-START)));
+  document.getElementById('balken').style.width = (anteil*100).toFixed(1) + '%';
+  const tagNr = Math.min(16, Math.max(1, Math.floor((now-START)/864e5)+1));
+  document.getElementById('balken-text').textContent = `Reisetag ${tagNr} von 16 · ${Math.round(anteil*100)} % geschafft`;
+  const stempel = th.datum + Math.floor(th.min/5);
+  if (stempel !== letzterTag){ const offen = [...document.querySelectorAll('.tag.offen')].map(e=>e.id); letzterTag = stempel; aufbauen();
+    offen.forEach(id => { const e = document.getElementById(id); if (e) e.classList.add('offen'); }); }
+}
+
+// Aufklappen, Bilder groß, Laternen, Herz
+document.addEventListener('click', e => {
+  const kopf = e.target.closest('.kopf');
+  if (kopf) { kopf.parentElement.classList.toggle('offen'); return; }
+  const img = e.target.closest('.bild img');
+  if (img) { const lb = document.getElementById('lightbox'); lb.querySelector('img').src = img.src; lb.querySelector('p').textContent = img.alt; lb.classList.add('an'); return; }
+  if (e.target.closest('#lightbox')) document.getElementById('lightbox').classList.remove('an');
+});
+document.getElementById('herz').addEventListener('click', e => {
+  for (let i=0;i<8;i++){ const h = document.createElement('div'); h.className='flieg'; h.textContent = ['❤️','💕','😘'][i%3];
+    h.style.left = (e.clientX - 15 + (Math.random()*120-60)) + 'px'; h.style.top = (e.clientY - 20) + 'px';
+    h.style.animationDelay = (i*80) + 'ms'; document.body.appendChild(h); setTimeout(() => h.remove(), 2400); }
+});
+const knopf = document.getElementById('knopf-heute');
+knopf.addEventListener('click', () => { const h = document.querySelector('.tag.heute'); if (h) h.scrollIntoView({behavior:'smooth', block:'start'}); });
+window.addEventListener('scroll', () => { const h = document.querySelector('.tag.heute');
+  if (!h) return; const r = h.getBoundingClientRect(); knopf.style.display = (r.bottom < 0 || r.top > innerHeight) ? 'block' : 'none'; }, {passive:true});
+
+const lat = document.getElementById('laternen');
+for (let i=0;i<14;i++){ const l = document.createElement('span'); l.className='laterne';
+  l.style.left = (Math.random()*96) + '%'; l.style.animationDuration = (9 + Math.random()*9) + 's';
+  l.style.animationDelay = (Math.random()*10) + 's'; const g = .6 + Math.random()*.7; l.style.width = (14*g)+'px'; l.style.height = (18*g)+'px'; lat.appendChild(l); }
+
+ticken(); setInterval(ticken, 1000);
+</script>
+</body>
+</html>
